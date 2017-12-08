@@ -28,9 +28,6 @@ public class WeatherApiImpl implements WeatherApi, ErrorController
 
   private static final String PATH = "/error";
 
-  @Value("${debug}")
-  private Boolean debugMode;
-
   @Autowired
   private WeatherRetrievalService weatherRetrievalService;
 
