@@ -1,0 +1,7 @@
+def path = [] as LinkedList
+
+rootDir.traverse(
+  filter: { it.name =~ /build\.gradle|src/ && it.getParentFile().name != "buildSrc" },
+  maxDepth: 3,
+  preDir: { path << it.name },
+  postDir: { path.removeLast() }) { if (path) include path.join(":") }

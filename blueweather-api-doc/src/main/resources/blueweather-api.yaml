@@ -1,0 +1,29 @@
+swagger: '2.0'
+info:
+  title: blueweather API
+  description: Yet another weather application
+  version: '0.0.1'
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+basePath: /api/weather
+
+tags:
+  - name: Weather
+    description: API for weather information retrieval
+
+paths:
+  /daily/default:
+    get:
+      summary: Get the weather of default location and date
+      description: It retrieves the daily weather information of a predefined default place and date
+      tags:
+        - Daily
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: The weather information file

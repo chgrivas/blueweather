@@ -1,0 +1,37 @@
+configurations {
+    swagger
+}
+
+dependencies {
+    swagger 'io.swagger:swagger-codegen-cli:2.1.4'
+}
+
+ext.swagger = [
+    apiDoc: file('src/main/resources/blueweather-api.yaml'),
+    docsDir: "$buildDir/docs/swagger",
+    swaggerUiDir: "$buildDir/docs/swaggerui"
+]
+
+task buildDocs(type: JavaExec, description: 'Generates API documentation from the Swagger blueweather-api.yaml file as a NodeJS server') {
+   args 'generate', '-l', 'nodejs', '-i', swagger.apiDoc, '-o', swagger.docsDir
+}
+
+task buildHtmlDocs(type: JavaExec, description: 'Generates API documentation from the Swagger blueweather-api.yaml file as a static HTML page') {
+   args 'generate', '-l', 'html', '-i', swagger.apiDoc, '-t', 'src/main/resources/templates', '-o', swagger.docsDir
+}
+
+task copySwaggerUi(type: Copy) {
+   from 'src/main/resources/swaggerui'
+   into swagger.swaggerUiDir
+}
+
+task buildSwaggerUiDocs(type: JavaExec, description: 'Generates API documentation from the Swagger blueweather-api.yaml file as a JSON file') {
+   dependsOn 'copySwaggerUi'
+   args 'generate', '-l', 'swagger', '-i', swagger.apiDoc, '-o', swagger.swaggerUiDir
+}
+
+tasks.withType(JavaExec) {
+   group 'Documentation'
+   classpath configurations.swagger
+   main = 'io.swagger.codegen.SwaggerCodegen'
+}
