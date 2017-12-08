@@ -2,17 +2,40 @@ package com.blueweather.api.dto;
 
 public class WeatherResponseDto {
 
-    private Integer temp;
+    private String maxTemperatureInCelcius;
+    private String minTemperatureInCelcius;
+    private String maxHumidity;
+    private String precipitation;
 
-    public WeatherResponseDto(Integer temp) {
-        this.temp = temp;
+    public String getMaxHumidity() {
+        return maxHumidity;
     }
 
-    public Integer getTemp() {
-        return temp;
+    public void setMaxHumidity(String maxHumidity) {
+        this.maxHumidity = maxHumidity;
     }
 
-    public void setTemp(Integer temp) {
-        this.temp = temp;
+    public String getMaxTemperatureInCelcius() {
+        return maxTemperatureInCelcius;
+    }
+
+    public void setMaxTemperatureInCelcius(String maxTemperatureInCelcius) {
+        this.maxTemperatureInCelcius = maxTemperatureInCelcius;
+    }
+
+    public String getMinTemperatureInCelcius() {
+        return minTemperatureInCelcius;
+    }
+
+    public void setMinTemperatureInCelcius(String minTemperatureInCelcius) {
+        this.minTemperatureInCelcius = minTemperatureInCelcius;
+    }
+
+    public String getPrecipitation() {
+        return precipitation;
+    }
+
+    public void setPrecipitation(String precipitation) {
+        this.precipitation = precipitation;
     }
 }
